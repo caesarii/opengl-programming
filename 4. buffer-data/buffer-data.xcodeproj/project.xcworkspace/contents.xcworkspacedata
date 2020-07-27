@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Users/qinghe/code/opengl-programming/4. buffer-data/buffer-data.xcodeproj">
    </FileRef>
 </Workspace>

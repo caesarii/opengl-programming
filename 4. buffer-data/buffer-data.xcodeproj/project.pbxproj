@@ -25,7 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5EC98F8324696D8B003665D6 /* glut */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = glut; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EC98F8324696D8B003665D6 /* buffer-data */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "buffer-data"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC98F8624696D8B003665D6 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		5EC98F8E24696DAE003665D6 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		5EC98F9024696DB6003665D6 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -56,7 +56,7 @@
 		5EC98F8424696D8B003665D6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5EC98F8324696D8B003665D6 /* glut */,
+				5EC98F8324696D8B003665D6 /* buffer-data */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,9 +81,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5EC98F8224696D8B003665D6 /* glut */ = {
+		5EC98F8224696D8B003665D6 /* buffer-data */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5EC98F8A24696D8B003665D6 /* Build configuration list for PBXNativeTarget "glut" */;
+			buildConfigurationList = 5EC98F8A24696D8B003665D6 /* Build configuration list for PBXNativeTarget "buffer-data" */;
 			buildPhases = (
 				5EC98F7F24696D8B003665D6 /* Sources */,
 				5EC98F8024696D8B003665D6 /* Frameworks */,
@@ -93,9 +93,9 @@
 			);
 			dependencies = (
 			);
-			name = glut;
+			name = "buffer-data";
 			productName = glut;
-			productReference = 5EC98F8324696D8B003665D6 /* glut */;
+			productReference = 5EC98F8324696D8B003665D6 /* buffer-data */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -112,7 +112,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5EC98F7E24696D8B003665D6 /* Build configuration list for PBXProject "glut" */;
+			buildConfigurationList = 5EC98F7E24696D8B003665D6 /* Build configuration list for PBXProject "buffer-data" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -125,7 +125,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5EC98F8224696D8B003665D6 /* glut */,
+				5EC98F8224696D8B003665D6 /* buffer-data */,
 			);
 		};
 /* End PBXProject section */
@@ -272,7 +272,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5EC98F7E24696D8B003665D6 /* Build configuration list for PBXProject "glut" */ = {
+		5EC98F7E24696D8B003665D6 /* Build configuration list for PBXProject "buffer-data" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5EC98F8824696D8B003665D6 /* Debug */,
@@ -281,7 +281,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5EC98F8A24696D8B003665D6 /* Build configuration list for PBXNativeTarget "glut" */ = {
+		5EC98F8A24696D8B003665D6 /* Build configuration list for PBXNativeTarget "buffer-data" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5EC98F8B24696D8B003665D6 /* Debug */,
