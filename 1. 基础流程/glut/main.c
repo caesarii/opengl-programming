@@ -12,8 +12,6 @@ void
 init(void) {
     glClearColor(0, 0, 0, 0);
     glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
 }
 
 void
@@ -22,14 +20,22 @@ render(void) {
     glColor3f(1.0, 1.0, 1.0);
     
     glBegin(GL_POLYGON);
-        glVertex3f(0.25, 0.25, 0.0);
-        glVertex3f(0.75, 0.25, 0.0);
-        glVertex3f(0.75, 0.75, 0.0);
-        glVertex3f(0.25, 0.75, 0.0);
+        glVertex2f(0.0, 0.0);
+        glVertex2f(100.0, 0.0);
+        glVertex2f(100.0, 100.0);
+        glVertex2f(0.0, 100.0);
     glEnd();
     
     glFlush();
 }
+
+void
+reshape(int w, int h) {
+    glViewport(0, 0, (GLsizei) w, (GLsizei) h);
+    glLoadIdentity();
+    gluOrtho2D(0.0, (GLdouble) w, 0.0, (GLdouble) h);
+}
+
 
 int
 main(int argc, char *argv[]) {
@@ -40,6 +46,7 @@ main(int argc, char *argv[]) {
     glutCreateWindow("my first opengl");
     init();
     glutDisplayFunc(render);
+    glutReshapeFunc(reshape);
     glutMainLoop();
     return 0;
 }
