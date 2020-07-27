@@ -20,6 +20,7 @@ init(void) {
 void
 drawOnePoint (float x1, float y1, float size) {
     glPointSize(size);
+    
     glBegin(GL_POINTS);
         glVertex2f((x1), (y1));
     glEnd();
@@ -28,8 +29,9 @@ drawOnePoint (float x1, float y1, float size) {
 void
 drawOneLine (float x1, float y1, float x2, float y2, float width) {
     glLineWidth(width);
+    
     glBegin(GL_LINES);
-    glVertex2f((x1), (y1)); glVertex2f((x2), (y2));
+        glVertex2f((x1), (y1)); glVertex2f((x2), (y2));
     glEnd();
 }
 
@@ -45,6 +47,24 @@ drawPolygon(void) {
     glEnd();
 }
 
+void
+drawColorPolygon(void) {
+    glColor3f(1.0, 1.0, 1.0);
+    
+    glBegin(GL_POLYGON);
+        glColor3f(1.0, 0.0, 0.0);
+        glVertex2f(200.0, 0.0);
+    
+        glColor3f(0.0, 1.0, 0.0);
+        glVertex2f(300.0, 0.0);
+    
+        glColor3f(1.0, 0.0, 1.0);
+        glVertex2f(300.0, 100.0);
+    
+        glColor3f(0.0, 0.0, 1.0);
+        glVertex2f(200.0, 100.0);
+    glEnd();
+}
 
 void
 reshape(int w, int h) {
@@ -63,6 +83,8 @@ render(void) {
     drawOneLine(300.0, 300.0, 600.0, 600.0, 10);
     
     drawPolygon();
+    
+    drawColorPolygon();
     
     glFlush();
 }
