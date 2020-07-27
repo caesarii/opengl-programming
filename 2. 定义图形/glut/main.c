@@ -38,20 +38,29 @@ drawPolygon(void) {
     glColor3f(1.0, 1.0, 1.0);
     
     glBegin(GL_POLYGON);
-        glVertex3f(0.25, 0.25, 0.0);
-        glVertex3f(0.75, 0.25, 0.0);
-        glVertex3f(0.75, 0.75, 0.0);
-        glVertex3f(0.25, 0.75, 0.0);
+        glVertex2f(0.0, 0.0);
+        glVertex2f(100.0, 0.0);
+        glVertex2f(100.0, 100.0);
+        glVertex2f(0.0, 100.0);
     glEnd();
 }
+
+
+void
+reshape(int w, int h) {
+    glViewport(0, 0, (GLsizei) w, (GLsizei) h);
+    glLoadIdentity();
+    gluOrtho2D(0.0, (GLdouble) w, 0.0, (GLdouble) h);
+}
+
 
 void
 render(void) {
     glClear(GL_COLOR_BUFFER_BIT);
     
-    drawOnePoint(0.1, 0.1, 100);
+    drawOnePoint(200.0, 200.0, 10);
     
-    drawOneLine(0.8, 0.8, 1.0, 1.0, 10);
+    drawOneLine(300.0, 300.0, 600.0, 600.0, 10);
     
     drawPolygon();
     
@@ -67,6 +76,7 @@ main(int argc, char *argv[]) {
     glutCreateWindow("my first opengl");
     init();
     glutDisplayFunc(render);
+    glutReshapeFunc(reshape);
     glutMainLoop();
     return 0;
 }
