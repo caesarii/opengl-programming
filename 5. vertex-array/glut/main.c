@@ -7,6 +7,8 @@
 //
 
 #include <glut/glut.h>
+#include <OpenGL/gl3.h>
+
 #define BUFFER_OFFSET(bytes) ((GLubyte*) NULL + (bytes))
 
 void
@@ -15,43 +17,6 @@ init(void) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
-}
-
-
-
-void
-drawArrayElement () {
-    // 顶点数组
-    GLfloat vertices[][6] = {
-        {1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-        {0.0, 1.0, 0.0, 0.0, 500.0, 0.0},
-        {0.0, 0.0, 1.0, 500.0, 500.0, 0.0},
-        {1.0, 1.0, 1.0, 500.0, 0.0, 0.0},
-    };
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_COLOR_ARRAY);
-    GLubyte indices[][4] = {{0, 1, 2, 3}};
-    
-  
-
-    
-    // 缓冲区对象
-    GLuint buffers[2];
-    glGenBuffers(2, buffers);
-    
-    glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
-    
-    glVertexPointer(3, GL_FLOAT, 6*sizeof(GLfloat), BUFFER_OFFSET(3*sizeof(GLfloat)));
-    glColorPointer(3, GL_FLOAT, 6*sizeof(GLfloat), BUFFER_OFFSET(0));
-    
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-    
-    glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, BUFFER_OFFSET(0));
 }
 
 void
@@ -67,17 +32,18 @@ drawByBufferData () {
     glEnableClientState(GL_COLOR_ARRAY);
     GLubyte indices[][4] = {{0, 1, 2, 3}};
     
-  
 
+    
+    GLuint vao[1];
+    glGenVertexArrays(1, vao);
+    glBindVertexArray(vao[0]);
     
     // 缓冲区对象
     // 1. 分配标识符
     int numberOfBuffer = 2;
     GLuint buffers[numberOfBuffer];
     glGenBuffers(numberOfBuffer, buffers);
-    
-    printf("buffers[0]: %i \n", buffers[0]);
-    
+   
     
     // 2. 绑定缓冲区对象
     glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
@@ -94,8 +60,11 @@ drawByBufferData () {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     
+    
+    // glBindVertexArrayAPPLE(vao[0]);
+    
     // 6. 渲染
-    glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, BUFFER_OFFSET(0));
+    glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, 0);
 
 }
 
