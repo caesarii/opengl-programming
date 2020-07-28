@@ -21,38 +21,81 @@ init(void) {
 
 void
 drawArrayElement () {
-    // interwined 数组
+    // 顶点数组
     GLfloat vertices[][6] = {
         {1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
         {0.0, 1.0, 0.0, 0.0, 500.0, 0.0},
         {0.0, 0.0, 1.0, 500.0, 500.0, 0.0},
         {1.0, 1.0, 1.0, 500.0, 0.0, 0.0},
     };
-    
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_COLOR_ARRAY);
     GLubyte indices[][4] = {{0, 1, 2, 3}};
+    
+  
+
     
     // 缓冲区对象
     GLuint buffers[2];
-    // 创建
     glGenBuffers(2, buffers);
     
-    
-    // 激活
     glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
-    // 初始化
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    glVertexPointer(3, GL_FLOAT, 6*sizeof(GLfloat), BUFFER_OFFSET(3*sizeof(GLfloat)));
-    glEnableClientState(GL_VERTEX_ARRAY);
     
-    // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glVertexPointer(3, GL_FLOAT, 6*sizeof(GLfloat), BUFFER_OFFSET(3*sizeof(GLfloat)));
     glColorPointer(3, GL_FLOAT, 6*sizeof(GLfloat), BUFFER_OFFSET(0));
-    glEnableClientState(GL_COLOR_ARRAY);
+    
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    // 渲染缓冲数据
+    
+
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     
-    glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, 0);
+    glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, BUFFER_OFFSET(0));
+}
+
+void
+drawByBufferData () {
+    // 顶点数组
+    GLfloat vertices[][6] = {
+        {1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+        {0.0, 1.0, 0.0, 0.0, 500.0, 0.0},
+        {0.0, 0.0, 1.0, 500.0, 500.0, 0.0},
+        {1.0, 1.0, 1.0, 500.0, 0.0, 0.0},
+    };
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_COLOR_ARRAY);
+    GLubyte indices[][4] = {{0, 1, 2, 3}};
+    
+  
+
+    
+    // 缓冲区对象
+    // 1. 分配标识符
+    int numberOfBuffer = 2;
+    GLuint buffers[numberOfBuffer];
+    glGenBuffers(numberOfBuffer, buffers);
+    
+    printf("buffers[0]: %i \n", buffers[0]);
+    
+    
+    // 2. 绑定缓冲区对象
+    glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
+    
+    // 3. 分配内存空间
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    // 4. 将顶点数据存入缓冲区
+    glVertexPointer(3, GL_FLOAT, 6*sizeof(GLfloat), BUFFER_OFFSET(3*sizeof(GLfloat)));
+    glColorPointer(3, GL_FLOAT, 6*sizeof(GLfloat), BUFFER_OFFSET(0));
+
+    
+    // 5. 将用于渲染的数据存储缓冲区
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    
+    // 6. 渲染
+    glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, BUFFER_OFFSET(0));
 
 }
 
@@ -60,7 +103,7 @@ void
 render(void) {
     glClear(GL_COLOR_BUFFER_BIT);
     
-    drawArrayElement();
+    drawByBufferData();
     
     glFlush();
 }
