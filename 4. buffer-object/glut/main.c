@@ -32,8 +32,6 @@ drawArrayElement () {
     glEnableClientState(GL_COLOR_ARRAY);
     GLubyte indices[][4] = {{0, 1, 2, 3}};
     
-  
-
     
     // 缓冲区对象
     GLuint buffers[2];
